@@ -14,4 +14,6 @@
 - The image is based on the [alpine](https://hub.docker.com/_/alpine/) image.
 - The `7.0` version is currently part of alpine edge.
 - The `cli` provides php from the command line and `fpm` provides php behind fpm to be used with an nignx proxy for example.
+- This image includes the extensions: `ctype`, `json`, `openssl`, `phar`, `xml`.
+- This image includes `composer` and `git`.
 - Report any issues in the github [issue tracker](https://github.com/choobs/docker-php/issues/new).
