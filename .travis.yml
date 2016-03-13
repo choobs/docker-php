@@ -1,0 +1,18 @@
+language: bash
+services: docker
+
+env:
+  - VERSION=7.0 VARIANT=cli
+  - VERSION=7.0 VARIANT=fpm
+  - VERSION=5.6 VARIANT=cli
+  - VERSION=5.6 VARIANT=fpm
+
+before_script:
+  - cd "$VERSION"/"$VARIANT"
+  - image="choobs/mariadb:$VERSION-$VARIANT"
+
+script:
+  - docker build -t "$image" .
+
+after_script:
+  - docker images
