@@ -16,6 +16,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN set -ex \
 		&& cd /etc/php \
+		&& mkdir php-fpm.d \
+		&& echo "include=`pwd`/php-fpm.d/*.conf" >> php-fpm.conf \
 		&& { \
 				echo '[global]'; \
 				echo 'error_log = /proc/self/fd/2'; \
@@ -29,7 +31,7 @@ RUN set -ex \
 				echo '; Ensure worker stdout and stderr are sent to the main error log.'; \
 				echo 'catch_workers_output = yes'; \
 			} | tee php-fpm.d/docker.conf \
-			&& { \
+		&& { \
 				echo '[global]'; \
 				echo 'daemonize = no'; \
 				echo; \
